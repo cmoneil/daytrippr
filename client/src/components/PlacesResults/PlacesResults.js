@@ -5,11 +5,15 @@ const PlacesResults = props => (
   <div className="col-lg-4">
     <div className="card">
       <div className="card-header text-center">Places to Go</div>
-      <li className="list-group-item">
+        <ul className="list-group" style={{maxHeight: 300,
+          marginBottom: 10,
+          overflow: "scroll"
+        }}>
           {props.children}
-      </li>
+        </ul>
     </div>
   </div>
+  
 
 );
 

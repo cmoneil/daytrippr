@@ -1,8 +1,10 @@
 const router = require("express").Router();
-// const bookRoutes = require("./article");
-const articleRoutes = require("./article");
+const searchRoutes = require("./search");
+const intineraryRoutes = require("./itinerary");
 
-// Article routes
-router.use("/article", articleRoutes);
+// API routes
+router.use("/itinerary", intineraryRoutes);
+router.use("/search", searchRoutes);
+
 
 module.exports = router;

@@ -17,15 +17,22 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^3.5.0",
-    "nodemon": "^1.11.0"
+    "css-loader": "^1.0.0",
+    "nodemon": "^1.11.0",
+    "style-loader": "^0.22.1"
   },
   "dependencies": {
     "axios": "^0.16.2",
     "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
     "express": "^4.15.4",
+    "google-map-react": "^1.0.6",
+    "google-maps-react": "^2.0.2",
     "if-env": "^1.0.4",
     "moment": "^2.22.2",
     "mongoose": "^5.0.17",
-    "react-moment": "^0.7.9"
+    "react-google-maps": "^9.4.5",
+    "react-moment": "^0.7.9",
+    "react-pure-render": "^1.0.2"
   }
 }

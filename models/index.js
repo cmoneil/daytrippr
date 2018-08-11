@@ -1,3 +1,3 @@
 module.exports = {
-  Article: require("./article")
+  Itinerary: require("./itinerary")
 };

@@ -1,13 +1,17 @@
 import React from "react";
 
+
 const Itinerary = props => (
   
 
   <div className="card">
     <div className="card-header text-center">Itinerary</div>
-    <li className="list-group-item">
+      <ul className="list-group" style={{maxHeight: 300,
+      marginBottom: 10,
+      overflow: "scroll"
+    }}>
         {props.children}
-    </li>
+      </ul>
   </div>
 
 
