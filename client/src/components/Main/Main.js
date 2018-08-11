@@ -77,7 +77,7 @@ class Main extends Component {
             console.log(response.data.lng)
             // console.log("yelp", response.data.collection[0]);
             // console.log("seat", response.data.collection[1]);
-            // console.log("places", response.data.collection[2]);
+            console.log("places", response.data.collection[2]);
             response.data.collection[1].map(events=>{
                 events.name = events.title
             })
