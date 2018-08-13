@@ -1,10 +1,10 @@
 import React from "react";
 
-const PlacesResults = props => (
+const ParksResults = props => (
   
   <div className="col-lg-3">
     <div className="card">
-      <div className="card-header text-center">Places to Go</div>
+      <div className="card-header text-center">Parks to See</div>
         <ul className="list-group" style={{maxHeight: 300,
           marginBottom: 10,
           overflow: "scroll"
@@ -17,4 +17,4 @@ const PlacesResults = props => (
 
 );
 
-export default PlacesResults
+export default ParksResults

@@ -2,7 +2,7 @@ import React from "react";
 
 const SearchForm = props => (
     <form onSubmit={props.handleSubmit}>
-      <label htmlFor="search">Waste some time</label>
+      <label htmlFor="search">Plan your adventure</label>
         <div className="form-group">
           <input
               onChange={props.handleLocation}

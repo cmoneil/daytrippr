@@ -40,19 +40,23 @@ router.route("/form-data")
              console.log("lng", lng);
              //Seatgeek API call
              const seatGet = await axios(`${SEATBASEURL}${location}&datetime_utc.gte=${startTime}&datetime_utc.lte=${endTime}&client_id=${SEATCLIENTID}`);
-             //Google Places API Call
+             //Google Museums API Call
              const placesGet = await axios(`${PLACESBASEURL}${lat},${lng}&radius=1500&type=museum&key=${PLACESAPIKEY}`);
+             //Google Parks API Call
+             const parksGet = await axios(`${PLACESBASEURL}${lat},${lng}&radius=1500&type=park&key=${PLACESAPIKEY}`);
+             //Yelp API Call
              const yelpGet = await axios(`${YELPBASEURL}${location}`, {
                 headers: {
                 "Authorization": `Bearer ${YELPAPIKEY}`
                 }
              });
              //Return Data
-             const [seatData, placesData, yelpData] = await Promise.all([seatGet, placesGet,yelpGet])
+             const [seatData, placesData, yelpData, parksData] = await Promise.all([seatGet, placesGet, yelpGet, parksGet])
             //  console.log("seat", seatData.data.events);
             // //  console.log("places", placesData.data.results);
             // //  console.log("yelp", yelpData.data.businesses);
-             collection.push(yelpGet.data.businesses, seatGet.data.events, placesGet.data.results)
+            console.log(parksGet.data.results)
+             collection.push(yelpGet.data.businesses, seatGet.data.events, placesGet.data.results, parksGet.data.results)
              res.send({collection, lat, lng})
              
          } 

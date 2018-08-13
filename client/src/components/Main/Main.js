@@ -4,6 +4,7 @@ import ItinList from "../ItinList";
 import SearchForm from "../SearchForm";
 import EventResults from "../EventResults";
 import PlacesResults from "../PlacesResults";
+import ParksResults from "../ParksResults";
 import RestResults from "../RestResults";
 import ResultsList from "../ResultsList"
 import API from "../../Utils/API"
@@ -29,6 +30,7 @@ class Main extends Component {
             events: [],
             restaurants: [],
             places: [],
+            parks: [],
             saved: []
         };
     }
@@ -75,9 +77,9 @@ class Main extends Component {
         .then((response) => {
             console.log(response.data)
             console.log(response.data.lng)
-            // console.log("yelp", response.data.collection[0]);
+            console.log("yelp", response.data.collection[0]);
             // console.log("seat", response.data.collection[1]);
-            console.log("places", response.data.collection[2]);
+            // console.log("places", response.data.collection[2]);
             response.data.collection[1].map(events=>{
                 events.name = events.title
             })
@@ -87,7 +89,8 @@ class Main extends Component {
                 lng: response.data.lng,
                 restaurants: response.data.collection[0],
                 events: response.data.collection[1],
-                places: response.data.collection[2]
+                places: response.data.collection[2],
+                parks: response.data.collection[3]
             });
             response.data.collection[1].map(events=>{
                 events.name = events.title
@@ -142,8 +145,9 @@ class Main extends Component {
                             <MapContainer
                             restaurants ={this.state.restaurants}
                             places={this.state.places} 
+                            parks={this.state.parks}
                             events={this.state.events}
-                            location={{lat: this.state.lat, lng: this.state.lng}}/>
+                            center={{lat: this.state.lat, lng: this.state.lng}}/>
                         </div>
                         <div className="col-4">
                             <SearchForm
@@ -198,6 +202,20 @@ class Main extends Component {
                                 )
                             })}
                         </PlacesResults>
+                        <ParksResults>
+                            {this.state.parks.map(parks => {
+                                return (
+                                    <ResultsList
+                                        _id={parks.id}
+                                        key={parks.id}
+                                        title={parks.name}
+                                        url={parks.url}
+                                        handleSaveButton={() => this.handleSaveButton(parks)}
+                                        getSaved={this.getSaved}
+                                    />
+                                )
+                            })}
+                        </ParksResults>
                         <RestResults>
                             {this.state.restaurants.map(restaurants => {
                                 return (
