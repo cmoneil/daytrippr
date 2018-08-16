@@ -1,7 +1,7 @@
 import React from "react";
 import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
 import RestMarkers from "../RestMarkers";
-import PlaceIcon from "./icons/places.png";
+import PlaceIcon from "./icons/sculpture.png";
 import EventIcon from "./icons/events.png";
 import RestIcon from "./icons/rest.png"
 import ParkIcon from "./icons/park.png"

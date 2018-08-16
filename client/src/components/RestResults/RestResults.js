@@ -1,10 +1,11 @@
 import React from "react";
+import Icon from "../Map/icons/rest.png"
 
 const RestResults = props => (
   
   <div className="col-lg-3">
     <div className="card">
-    <div className="card-header text-center">Where to Eat</div>
+    <div className="card-header text-center"><h5>Places to Eat<img alt="restaurants" style={{paddingLeft: 20}} src={Icon}></img></h5></div>
       <ul className="list-group" style={{maxHeight: 300,
       marginBottom: 10,
       overflow: "scroll"

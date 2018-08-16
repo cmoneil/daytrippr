@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Moment from "moment";
 import ItinList from "../ItinList";
+import Footer from "../Footer"
 import SearchForm from "../SearchForm";
 import EventResults from "../EventResults";
 import PlacesResults from "../PlacesResults";
@@ -8,10 +9,12 @@ import ParksResults from "../ParksResults";
 import RestResults from "../RestResults";
 import ResultsList from "../ResultsList"
 import API from "../../Utils/API"
-import Header from "../Header";
 import MapContainer from "../MapContainer"
+import NoResults from "../NoResults"
 import Itinerary from "../Itinerary";
 import axios from "axios";
+import GoogleAuth from "../GoogleAuth";
+import Background from "./images/clouds2.jpg"
 // const moment = require("moment")
 
 class Main extends Component {
@@ -67,7 +70,6 @@ class Main extends Component {
             startTime: Moment().format("YYYY-MM-DDTHH:mm"),
             endTime: Moment().add(this.state.timeToSpend, "h").format("YYYY-MM-DDTHH:mm")
         });
-
         axios.post("/api/search/form-data",{
             location: this.state.location,
             startTime: now,
@@ -137,8 +139,7 @@ class Main extends Component {
     render() {
 
         return (
-            <div>
-                <Header />
+            <div >
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-8">
@@ -173,24 +174,31 @@ class Main extends Component {
                     </div>
                 </div>
                 <div className="container-fluid">
-                    <div className="row">
-                        <EventResults>
-                            {this.state.events.map(events => {!events|| "No Events"
-                                return (
-                                    <ResultsList
-                                        _id={events.id}
-                                        key={events.id}
-                                        title={events.name}
-                                        url={events.url}
-                                        handleSaveButton={() => this.handleSaveButton(events)}
-                                        getSaved={this.getSaved}
-                                    />
-                                )
-                            })}
-                        </EventResults>
+                    <div className="row" style={{paddingBottom: 40,
+                    paddingTop: 20}}>
+
+                            <EventResults>
+                                {!this.state.events.length ? <NoResults/> :
+                                this.state.events.map(events => {
+                                    return (
+                                        <ResultsList
+                                            _id={events.id}
+                                            key={events.id}
+                                            title={events.name}
+                                            url={events.url}
+                                            handleSaveButton={() => this.handleSaveButton(events)}
+                                            getSaved={this.getSaved}
+                                        />
+                                    )
+                                })}
+                            </EventResults>
+                        
+
+
                         <PlacesResults>
-                            {this.state.places.map(places => {
-                                return (
+                            {!this.state.events.length ? <NoResults/> :
+                            this.state.places.map(places => {
+                                return ( 
                                     <ResultsList
                                         _id={places.id}
                                         key={places.id}
@@ -203,7 +211,8 @@ class Main extends Component {
                             })}
                         </PlacesResults>
                         <ParksResults>
-                            {this.state.parks.map(parks => {
+                            {!this.state.parks.length ? <NoResults/> :
+                            this.state.parks.map(parks => {
                                 return (
                                     <ResultsList
                                         _id={parks.id}
@@ -217,7 +226,8 @@ class Main extends Component {
                             })}
                         </ParksResults>
                         <RestResults>
-                            {this.state.restaurants.map(restaurants => {
+                        {!this.state.restaurants.length ? <NoResults/> :
+                            this.state.restaurants.map(restaurants => {
                                 return (
                                     <ResultsList
                                         _id={restaurants.id}
@@ -231,6 +241,7 @@ class Main extends Component {
                             })}
                         </RestResults>
                     </div>
+                    <Footer/>
                 </div>
             </div>
         )

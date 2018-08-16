@@ -1,17 +1,20 @@
 import React from "react";
 
 const SearchForm = props => (
-    <form onSubmit={props.handleSubmit}>
-      <label htmlFor="search">Plan your adventure</label>
+    <form style={{backgroundColor: `rgba(255,255,255,0.5)`}} onSubmit={props.handleSubmit}>
+      <label htmlFor="search"><h2 style={{paddingTop: 10}}>Plan your adventure</h2></label>
         <div className="form-group">
           <input
               onChange={props.handleLocation}
               value={props.location}
               name="location"
-              type="text"
+              type="number"
               className="form-control"
               placeholder="Where are you?"
               id="search"
+              required
+              pattern="[0-9]{5}"
+
             />
         </div>
         <div className="form-group">
@@ -19,10 +22,13 @@ const SearchForm = props => (
               onChange={props.handleTimeToSpend}
               value={props.timeToSpend}
               name="timeToSpend"
-              type="text"
+              type="number"
               className="form-control"
               placeholder="How much time do you have?"
               id="search"
+              required
+              min="4"
+              max="12"
           />
         </div>
         <div className="form-group">

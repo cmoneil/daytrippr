@@ -7,7 +7,7 @@ const ItinList = props => (
             <h5>{props.title}</h5>
         </div>
             <a href={props.url} target="_blank">
-            <button className="btn btn-danger ">View Article</button>
+            <button className="btn btn-danger ">Get Info</button>
             </a>
             <button className="btn btn-primary" onClick={() => props.handleDeleteButton(props._id)}>Delete</button>
 </li>

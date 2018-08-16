@@ -1,17 +1,22 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
+import AuthApp from "./AuthApp/AuthApp"
+import AuthPage from "./AuthPage/AuthPage"
+import Callback from './Callback/Callback';
 import Main from "./components/Main"
 import NoMatch from "./pages/NoMatch";
+import Auth from './Auth/Auth';
+import history from './history';
 
+const auth = new Auth();
 
 const App = () => (
-  <Router>
+  <Router history={history} component={AuthApp}>
     <div>
-      <Switch>
-        <Route exact path="/" component={Main} />
-        <Route component={NoMatch} />
-      </Switch>
-    </div>
+        <Route path="/" render={(props) => <AuthApp auth={auth} {...props} />} />
+        <Route path="/home" render={(props) => <AuthPage auth={auth} {...props} />} />
+        <Route path="/callback" render={(props) => <Callback {...props} />} />
+      </div>
   </Router>
 );
 

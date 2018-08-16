@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 // Defining methods for the booksController
 module.exports = {
   findAll: function(req, res) {
+    console.log('!!!!');
     db.Itinerary
       .find(req.query)
       .sort({ date: -1 })

@@ -1,7 +1,7 @@
 import React from "react"
 
 const ResultsList = props => (
-  <li className="list-group-item list-group-item-action" style={{marginBottom: 60}}>
+  <li className="list-group-item" style={{marginBottom: 60}}>
     <div className="d-flex w-100 justify-content-between">
       <h5>{props.title}</h5>
     </div>

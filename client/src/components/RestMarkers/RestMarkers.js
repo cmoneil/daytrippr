@@ -1,6 +1,5 @@
 import React from "react";
 import { Marker, InfoWindow } from "react-google-maps";
-import { runInThisContext } from "vm";
 import MapCard from "../MapCard"
 // import StethoscopeIcon from "../stethoscopeIcon.png";
 
