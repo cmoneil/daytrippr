@@ -241,8 +241,9 @@ class Main extends Component {
                             })}
                         </RestResults>
                     </div>
-                    <Footer/>
+                    
                 </div>
+                <Footer/>
             </div>
         )
     }
