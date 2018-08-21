@@ -5,7 +5,7 @@ import PlaceIcon from "./icons/sculpture.png";
 import EventIcon from "./icons/events.png";
 import RestIcon from "./icons/rest.png"
 import ParkIcon from "./icons/park.png"
-import { join } from "path";
+// import { join } from "path";
 
 const Map2 = withScriptjs(withGoogleMap((props) =>{
 

@@ -1,10 +1,9 @@
 import React from "react";
-import { Router, Route, Switch } from "react-router-dom";
+import { Router, Route} from "react-router-dom";
 import AuthApp from "./AuthApp/AuthApp"
 import AuthPage from "./AuthPage/AuthPage"
 import Callback from './Callback/Callback';
-import Main from "./components/Main"
-import NoMatch from "./pages/NoMatch";
+// import NoMatch from "./pages/NoMatch";
 import Auth from './Auth/Auth';
 import history from './history';
 

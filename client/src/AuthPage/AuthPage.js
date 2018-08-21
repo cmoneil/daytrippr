@@ -9,6 +9,7 @@ class AuthPage extends Component {
   }
   render() {
     const { isAuthenticated } = this.props.auth;
+    
     return (
       <div >
         {
@@ -40,7 +41,9 @@ class AuthPage extends Component {
           <div style={
             {backgroundImage: `url(${Background})`,
             backgroundSize: `cover`}}>
-            <Main />
+            <Main 
+            oauthID = {this.props.auth.setSession.oauthID}
+            />
             </div>
         )}
       </div>

@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const intineraryController = require("../../controllers/intineraryController");
 
-// Matches with "/api/article"
+// Matches with "/api/itinerary"
 router.route("/")
   .get(intineraryController.findAll)
   .post(intineraryController.create);

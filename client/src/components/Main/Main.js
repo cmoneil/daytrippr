@@ -13,8 +13,7 @@ import MapContainer from "../MapContainer"
 import NoResults from "../NoResults"
 import Itinerary from "../Itinerary";
 import axios from "axios";
-import GoogleAuth from "../GoogleAuth";
-import Background from "./images/clouds2.jpg"
+
 // const moment = require("moment")
 
 class Main extends Component {
@@ -22,6 +21,7 @@ class Main extends Component {
         super(props);
 
         this.state = {
+            user: 0,
             location: "",
             lat: "",
             lng: "",
@@ -29,6 +29,7 @@ class Main extends Component {
             startTime: "",
             endTime: "",
             money: "",
+            oauthID: "",
             collection: [],
             events: [],
             restaurants: [],
@@ -38,10 +39,24 @@ class Main extends Component {
         };
     }
 
+    // componentWillMount() {
+    //     this.getUser()
+    // }
+
     componentDidMount() {
         this.getSaved()
+        console.log(this.props.oauthID)
+    
     }
 
+    getUser = () =>{
+        API.findUser()
+        .then((res) => {
+            console.log(res.data)
+            this.setState({ user: res.data })
+        })
+        .catch(err => console.log(err))
+    }
 
     handleLocation = (event) => {
         console.log(event.target.value)
@@ -102,8 +117,8 @@ class Main extends Component {
 
             })
             console.log(this.state.lat)
-            
-        }) .catch(function (error) {
+            })
+            .catch(function (error) {
             console.log(error);
         })
         

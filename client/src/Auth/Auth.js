@@ -1,9 +1,11 @@
 import Auth0Lock from 'auth0-lock';
 import { AUTH_CONFIG } from './auth0-variables';
 import history from '../history';
+import axios from 'axios'
 
 export default class Auth {
 
+  
   lock = new Auth0Lock(AUTH_CONFIG.clientId, AUTH_CONFIG.domain, {
     autoclose: true,
     auth: {
@@ -22,6 +24,7 @@ export default class Auth {
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
+    this.oauthID = this.setSession.oauthID
   }
 
   login() {
@@ -48,8 +51,13 @@ export default class Auth {
       localStorage.setItem('id_token', authResult.idToken);
       localStorage.setItem('expires_at', expiresAt);
       // navigate to the home route
-      history.replace('/home');
+      // history.replace('/home');
       console.log(authResult.idTokenPayload.sub)
+      console.log(authResult.idToken)
+      const oauthID = authResult.idTokenPayload.sub
+      axios.put("api/user", {oauthID})
+      .then(history.replace('/home'))
+      .catch(err =>console.log(err))
     }
   }
 

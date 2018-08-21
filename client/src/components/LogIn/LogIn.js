@@ -1,5 +1,5 @@
 import React from "react";
-import Background from "../Main/images/clouds2.jpg"
+
 
 const LogIn = () => (
   <div className="container-fluid">

@@ -1,6 +1,10 @@
 import axios from "axios";
 
 const API = {
+  // Saves user
+  findUser: function(userObj){
+    return axios.get("api/user", userObj);
+  },
   // Retrieves saved itinerary from the db
   getItinerary: function() {
     return axios.get("/api/itinerary");
