@@ -6,8 +6,8 @@ const API = {
     return axios.get("api/user", userObj);
   },
   // Retrieves saved itinerary from the db
-  getItinerary: function() {
-    return axios.get("/api/itinerary");
+  getItinerary: function(oauthID) {
+    return axios.get(`/api/itinerary/${oauthID}`);
   },
   // Saves a new intinerary to the db
   saveItinerary: function(itineraryObj) {

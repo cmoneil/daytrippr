@@ -24,7 +24,6 @@ export default class Auth {
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
-    this.oauthID = this.setSession.oauthID
   }
 
   login() {
@@ -50,10 +49,9 @@ export default class Auth {
       localStorage.setItem('access_token', authResult.accessToken);
       localStorage.setItem('id_token', authResult.idToken);
       localStorage.setItem('expires_at', expiresAt);
+      localStorage.setItem('oauthID', authResult.idTokenPayload.sub)
       // navigate to the home route
       // history.replace('/home');
-      console.log(authResult.idTokenPayload.sub)
-      console.log(authResult.idToken)
       const oauthID = authResult.idTokenPayload.sub
       axios.put("api/user", {oauthID})
       .then(history.replace('/home'))
@@ -66,6 +64,7 @@ export default class Auth {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    localStorage.removeItem('oauthID')
     // navigate to the home route
     history.replace('/home');
   }

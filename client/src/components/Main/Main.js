@@ -39,20 +39,19 @@ class Main extends Component {
         };
     }
 
-    // componentWillMount() {
-    //     this.getUser()
-    // }
+    componentWillMount() {
+        this.setState({ oauthID: localStorage.getItem("oauthID") })
+    }
 
     componentDidMount() {
+        console.log(localStorage.getItem("oauthID"))
         this.getSaved()
-        console.log(this.props.oauthID)
     
     }
 
     getUser = () =>{
         API.findUser()
         .then((res) => {
-            console.log(res.data)
             this.setState({ user: res.data })
         })
         .catch(err => console.log(err))
@@ -93,10 +92,7 @@ class Main extends Component {
         })
         .then((response) => {
             console.log(response.data)
-            console.log(response.data.lng)
-            console.log("yelp", response.data.collection[0]);
-            // console.log("seat", response.data.collection[1]);
-            // console.log("places", response.data.collection[2]);
+            // console.log(response.data.lng)
             response.data.collection[1].map(events=>{
                 events.name = events.title
             })
@@ -109,6 +105,7 @@ class Main extends Component {
                 places: response.data.collection[2],
                 parks: response.data.collection[3]
             });
+            console.log(this.state.lat)
             response.data.collection[1].map(events=>{
                 events.name = events.title
                 // console.log(events.id)
@@ -116,7 +113,7 @@ class Main extends Component {
                 // console.log(events.url)
 
             })
-            console.log(this.state.lat)
+            
             })
             .catch(function (error) {
             console.log(error);
@@ -127,14 +124,17 @@ class Main extends Component {
 
 
     handleSaveButton = (object) => {
-        API.saveItinerary(object)
+        API.saveItinerary({id: object.id,
+            name: object.name,
+            url: object.url,
+            oauthID: this.state.oauthID})
            .then(this.getSaved)
+           
     }
 
     getSaved = () => {
-        API.getItinerary()
+        API.getItinerary(this.state.oauthID)
             .then((res) => {
-                console.log(res.data)
                 this.setState({ saved: res.data })
             })
             .catch(err => console.log(err))

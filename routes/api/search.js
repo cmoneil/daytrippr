@@ -55,7 +55,7 @@ router.route("/form-data")
             //  console.log("seat", seatData.data.events);
             // //  console.log("places", placesData.data.results);
             // //  console.log("yelp", yelpData.data.businesses);
-            console.log(parksGet.data.results)
+            // console.log(parksGet.data.results)
              collection.push(yelpGet.data.businesses, seatGet.data.events, placesGet.data.results, parksGet.data.results)
              res.send({collection, lat, lng})
              

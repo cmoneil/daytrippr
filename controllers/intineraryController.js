@@ -12,16 +12,17 @@ module.exports = {
   },
   findById: function(req, res) {
     db.Itinerary
-      .findById(req.params.id)
+      .find({oauthID: req.params.oauthID})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
     console.log(req.body)
       const itinerary ={
-        id: (req.body.id),
+        id: req.body.id,
         name: req.body.name,
-        url: req.body.url
+        url: req.body.url,
+        oauthID: req.body.oauthID
       }
       db.Itinerary
       .create(itinerary)

@@ -5,8 +5,8 @@ const Itinerary = props => (
   
 
   <div className="card">
-    <div className="card-header text-center">Itinerary</div>
-      <ul className="list-group" style={{maxHeight: 300,
+    <div className="card-header text-center" style={{marginBottom: 10}}><h5>Itinerary</h5></div>
+      <ul className="list-group" style={{maxHeight: 245,
       marginBottom: 10,
       overflow: "scroll"
     }}>

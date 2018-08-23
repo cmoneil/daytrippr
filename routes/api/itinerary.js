@@ -2,9 +2,11 @@ const router = require("express").Router();
 const intineraryController = require("../../controllers/intineraryController");
 
 // Matches with "/api/itinerary"
+router.route("/:oauthID")
+  .get(intineraryController.findById)
+
 router.route("/")
-  .get(intineraryController.findAll)
-  .post(intineraryController.create);
+  .post(intineraryController.create)
 
 // Matches with "/api/books/:id"
 router

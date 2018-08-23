@@ -41,9 +41,7 @@ class AuthPage extends Component {
           <div style={
             {backgroundImage: `url(${Background})`,
             backgroundSize: `cover`}}>
-            <Main 
-            oauthID = {this.props.auth.setSession.oauthID}
-            />
+            <Main/>
             </div>
         )}
       </div>
