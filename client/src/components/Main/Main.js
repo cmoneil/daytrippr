@@ -44,7 +44,6 @@ class Main extends Component {
     }
 
     componentDidMount() {
-        console.log(localStorage.getItem("oauthID"))
         this.getSaved()
     
     }
@@ -91,9 +90,7 @@ class Main extends Component {
             money: this.state.money
         })
         .then((response) => {
-            console.log(response.data)
-            // console.log(response.data.lng)
-            response.data.collection[1].map(events=>{
+             response.data.collection[1].map(events=>{
                 events.name = events.title
             })
             this.setState({
@@ -105,7 +102,6 @@ class Main extends Component {
                 places: response.data.collection[2],
                 parks: response.data.collection[3]
             });
-            console.log(this.state.lat)
             response.data.collection[1].map(events=>{
                 events.name = events.title
                 // console.log(events.id)
@@ -119,7 +115,7 @@ class Main extends Component {
             console.log(error);
         })
         
-        console.log("click")
+    
     }
 
 
@@ -127,8 +123,12 @@ class Main extends Component {
         API.saveItinerary({id: object.id,
             name: object.name,
             url: object.url,
-            oauthID: this.state.oauthID})
+            oauthID: this.state.oauthID,
+            lat: object.lat,
+            lng: object.lng    
+        })
            .then(this.getSaved)
+           
            
     }
 
@@ -138,6 +138,7 @@ class Main extends Component {
                 this.setState({ saved: res.data })
             })
             .catch(err => console.log(err))
+            
 
     }
 
@@ -163,6 +164,7 @@ class Main extends Component {
                             places={this.state.places} 
                             parks={this.state.parks}
                             events={this.state.events}
+                            itin={this.state.saved}
                             center={{lat: this.state.lat, lng: this.state.lng}}/>
                         </div>
                         <div className="col-4">
@@ -183,7 +185,8 @@ class Main extends Component {
                                             handleDeleteButton={this.handleDeleteButton}
                                         />
                                     )   
-                                 })} 
+                                 })
+                                 } 
                              </Itinerary>
                         </div>
                     </div>
@@ -192,7 +195,7 @@ class Main extends Component {
                     <div className="row" style={{paddingBottom: 40,
                     paddingTop: 20}}>
 
-                            <EventResults>
+                        <EventResults>
                                 {!this.state.events.length ? <NoResults/> :
                                 this.state.events.map(events => {
                                     return (
@@ -201,7 +204,7 @@ class Main extends Component {
                                             key={events.id}
                                             title={events.name}
                                             url={events.url}
-                                            handleSaveButton={() => this.handleSaveButton(events)}
+                                            handleSaveButton={() => this.handleSaveButton({id: events.id, name: events.name, url: events.url, lat: events.venue.location.lat, lng: events.venue.location.lon})}
                                             getSaved={this.getSaved}
                                         />
                                     )
@@ -219,7 +222,7 @@ class Main extends Component {
                                         key={places.id}
                                         title={places.name}
                                         url={places.url}
-                                        handleSaveButton={() => this.handleSaveButton(places)}
+                                        handleSaveButton={() => this.handleSaveButton({id: places.id, name: places.name, url: places.url, lat: places.geometry.location.lat, lng: places.geometry.location.lng})}
                                         getSaved={this.getSaved}
                                     />
                                 )
@@ -234,7 +237,7 @@ class Main extends Component {
                                         key={parks.id}
                                         title={parks.name}
                                         url={parks.url}
-                                        handleSaveButton={() => this.handleSaveButton(parks)}
+                                        handleSaveButton={() => this.handleSaveButton({id:parks.id, name: parks.name, url: parks.url, lat: parks.geometry.location.lat, lng: parks.geometry.location.lng})}
                                         getSaved={this.getSaved}
                                     />
                                 )
@@ -249,7 +252,7 @@ class Main extends Component {
                                         key={restaurants.id}
                                         title={restaurants.name}
                                         url={restaurants.url}
-                                        handleSaveButton={() => this.handleSaveButton(restaurants)}
+                                        handleSaveButton={() => this.handleSaveButton({id: restaurants.id, name: restaurants.name, url: restaurants.url, lat: restaurants.coordinates.latitude, lng: restaurants.coordinates.longitude})}
                                         getSaved={this.getSaved}
                                     />
                                 )

@@ -17,12 +17,13 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    console.log(req.body)
       const itinerary ={
         id: req.body.id,
         name: req.body.name,
         url: req.body.url,
-        oauthID: req.body.oauthID
+        oauthID: req.body.oauthID,
+        lat: req.body.lat,
+        lng: req.body.lng
       }
       db.Itinerary
       .create(itinerary)

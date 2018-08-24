@@ -11,6 +11,7 @@ export default class MapContainer extends React.Component {
                 events={this.props.events}
 				places={this.props.places}
 				parks={this.props.parks}
+				itin={this.props.itin}
 				googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyCucNdXtBt0uv0BwcuhhYAeKa9OgchTqwo&v=3.exp&libraries=geometry,drawing,places`}
 				loadingElement={<div style={{ height: `100%` }} />}
 				containerElement={<div style={{ height: `600px`, width: `100%` }} />}
