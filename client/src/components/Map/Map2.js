@@ -83,6 +83,9 @@ const Map2 = withScriptjs(withGoogleMap((props) =>{
         defaultZoom={15}
         center={ !props.center.lat ? {lat: 44.986656, lng:-93.258133} : props.center }
         >
+        <RestMarkers
+        location={ !props.center.lat ? {lat: 44.986656, lng:-93.258133} : props.center }
+        />
         {placeMarkers}
         {eventMarkers}
         {restMarkers}

@@ -12,7 +12,9 @@ import API from "../../Utils/API"
 import MapContainer from "../MapContainer"
 import NoResults from "../NoResults"
 import Itinerary from "../Itinerary";
+import Weather from "../Weather";
 import axios from "axios";
+
 
 // const moment = require("moment")
 
@@ -35,6 +37,7 @@ class Main extends Component {
             restaurants: [],
             places: [],
             parks: [],
+            weather: [],
             saved: []
         };
     }
@@ -57,28 +60,23 @@ class Main extends Component {
     }
 
     handleLocation = (event) => {
-        console.log(event.target.value)
         this.setState({ location: event.target.value })
     }
     handleFormSubmit = (event) => {
         event.preventDefault();
-        console.log("click")
     }
 
     handleTimeToSpend = (event) => {
-        console.log(event.target.value)
         this.setState({ timeToSpend: event.target.value })
     }
 
     handleMoney = (event) => {
-        console.log(event.target.value)
         this.setState({ money: event.target.value })
     }
     handleSubmit = (event) => {
         event.preventDefault();
         let now = Moment().format("YYYY-MM-DDTHH:mm");
         let end = Moment().add(this.state.timeToSpend, "h").format("YYYY-MM-DDTHH:mm");
-        console.log(now)
         this.setState({
             startTime: Moment().format("YYYY-MM-DDTHH:mm"),
             endTime: Moment().add(this.state.timeToSpend, "h").format("YYYY-MM-DDTHH:mm")
@@ -100,7 +98,8 @@ class Main extends Component {
                 restaurants: response.data.collection[0],
                 events: response.data.collection[1],
                 places: response.data.collection[2],
-                parks: response.data.collection[3]
+                parks: response.data.collection[3],
+                weather: response.data.collection[4]
             });
             response.data.collection[1].map(events=>{
                 events.name = events.title
@@ -174,6 +173,13 @@ class Main extends Component {
                                 handleTimeToSpend={this.handleTimeToSpend}
                                 handleMoney={this.handleMoney}
                             />
+                            {/* <WeatherContainer> */}
+                            <Weather
+                                temperature={this.state.weather.temperature}
+                                summary={this.state.weather.summary}
+                                precipitation={this.state.weather.precipProbability}
+                                />    
+                            {/* </WeatherContainer> */}
                             <Itinerary>
                                 {this.state.saved.map(saved => {
                                     return (

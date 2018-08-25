@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const searchRoutes = require("./search3");
+const searchRoutes = require("./search");
 const intineraryRoutes = require("./itinerary");
 const userRoutes = require("./user")
 
