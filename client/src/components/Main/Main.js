@@ -157,7 +157,7 @@ class Main extends Component {
             <div >
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-8">
+                        <div className="col-lg-8 col-sm-12">
                             <MapContainer
                             restaurants ={this.state.restaurants}
                             places={this.state.places} 
@@ -166,20 +166,18 @@ class Main extends Component {
                             itin={this.state.saved}
                             center={{lat: this.state.lat, lng: this.state.lng}}/>
                         </div>
-                        <div className="col-4">
+                        <div className="col-lg-4 col-sm-12">
                             <SearchForm
                                 handleSubmit={this.handleSubmit}
                                 handleLocation={this.handleLocation}
                                 handleTimeToSpend={this.handleTimeToSpend}
                                 handleMoney={this.handleMoney}
                             />
-                            {/* <WeatherContainer> */}
                             <Weather
                                 temperature={this.state.weather.temperature}
                                 summary={this.state.weather.summary}
                                 precipitation={this.state.weather.precipProbability}
                                 />    
-                            {/* </WeatherContainer> */}
                             <Itinerary>
                                 {this.state.saved.map(saved => {
                                     return (
@@ -200,7 +198,6 @@ class Main extends Component {
                 <div className="container-fluid">
                     <div className="row" style={{paddingBottom: 40,
                     paddingTop: 20}}>
-
                         <EventResults>
                                 {!this.state.events.length ? <NoResults/> :
                                 this.state.events.map(events => {
@@ -215,10 +212,7 @@ class Main extends Component {
                                         />
                                     )
                                 })}
-                            </EventResults>
-                        
-
-
+                        </EventResults>
                         <PlacesResults>
                             {!this.state.events.length ? <NoResults/> :
                             this.state.places.map(places => {
