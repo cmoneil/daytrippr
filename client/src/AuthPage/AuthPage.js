@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Main from '../components/Main/Main'
 import LogIn from '../components/LogIn/LogIn'
 import Background from "../components/Main/images/clouds2.jpg"
+import PropTypes from "prop-types"
 
 class AuthPage extends Component {
   login() {
@@ -49,4 +50,7 @@ class AuthPage extends Component {
   }
 }
 
+AuthPage.propTypes = {
+  auth: PropTypes.node
+}
 export default AuthPage;

@@ -1,5 +1,6 @@
 import React from "react";
 import Icon from "../Map/icons/rest.png"
+import PropTypes from "prop-types"
 
 const RestResults = props => (
   
@@ -16,5 +17,9 @@ const RestResults = props => (
 </div>
 
 );
+
+RestResults.propTypes = {
+  children: PropTypes.node
+}
 
 export default RestResults

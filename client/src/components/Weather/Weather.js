@@ -1,5 +1,6 @@
 import React from "react";
 import MediaQuery from 'react-responsive'
+import PropTypes from "prop-types"
 
 const Weather = props => (
   <div>
@@ -37,4 +38,11 @@ const Weather = props => (
 
 
 )
+
+Weather.propTypes = {
+  temperature: PropTypes.node,
+  precipitation: PropTypes.node,
+  summary: PropTypes.node
+
+}
 export default Weather;

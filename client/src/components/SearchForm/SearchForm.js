@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types"
 
 const SearchForm = props => (
     <form style={{backgroundColor: `rgba(255,255,255,0.5)`}} onSubmit={props.handleSubmit}>
@@ -51,5 +52,16 @@ const SearchForm = props => (
       
 
 );
+
+SearchForm.propTypes = {
+  handleLocation: PropTypes.node,
+  handleMoney: PropTypes.node,
+  handleSubmit: PropTypes.node,
+  handleTimeToSpend: PropTypes.node,
+  location: PropTypes.node,
+  money: PropTypes.node,
+  timeToSpend: PropTypes.node
+}
+
 
 export default SearchForm;

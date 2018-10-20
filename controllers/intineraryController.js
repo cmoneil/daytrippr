@@ -1,7 +1,7 @@
 const db = require("../models");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
-// Defining methods for the booksController
+
 module.exports = {
   findAll: function(req, res) {
     db.Itinerary

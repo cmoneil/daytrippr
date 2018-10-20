@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, Button } from 'react-bootstrap';
+import PropTypes from "prop-types"
 // import './App.css';
 
 class AuthApp extends Component {
@@ -60,6 +61,12 @@ class AuthApp extends Component {
       </div>
     );
   }
+}
+
+AuthApp.propTypes = {
+  history: PropTypes.node,
+  auth: PropTypes.node,
+  
 }
 
 export default AuthApp;

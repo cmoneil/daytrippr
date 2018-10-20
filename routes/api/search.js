@@ -6,23 +6,16 @@ const axios = require("axios")
 let location;
 let startTime;
 let endTime;
-let money;
 let lat;
 let lng;
-let yelpData;
-let seatData;
-let placesData;
+// let money = 0; Not using at this time
 let collection = [];
 const GEOBASEURL = "https://maps.googleapis.com/maps/api/geocode/json?address="
-const GEOAPIKEY = "AIzaSyCucNdXtBt0uv0BwcuhhYAeKa9OgchTqwo"
 const YELPBASEURL = "https://api.yelp.com/v3/businesses/search?location=";
-const YELPAPIKEY = "cDJdoH87N4Ge3o94InnYAurMHQjMYZTMhpz49LQHeWSl8s2ZacyC4F0iYG4oMQtYhxYWS_rmnUkjYvbdsswZeLVmn6Gx97SpstJuBLyjXlgpnnyDfyoevz92q-HfWnYx"
 const PLACESBASEURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="
-const PLACESAPIKEY = "AIzaSyCucNdXtBt0uv0BwcuhhYAeKa9OgchTqwo"
 const SEATBASEURL = "https://api.seatgeek.com/2/events?geoip=";
-const SEATCLIENTID = "MjkyNzU3MXwxNTI1MjIzMTcyLjgy";
 const WEATHERBASEURL ="https://api.darksky.net/forecast";
-const WEATHERAPIKEY ="c59f673673d7f6ba89c1223cec579e9a"
+
 
 router.route("/form-data")
     .post(function (req, res) {
@@ -30,28 +23,28 @@ router.route("/form-data")
         location = req.body.location;
         startTime = req.body.startTime;
         endTime = req.body.endTime;
-        money = req.body.money;
+        // money = req.body.money; Not using yet
 
      const apiRequests = async ()=>{
          try{
-             const geoGet = await axios(`${GEOBASEURL}${location}&key=${GEOAPIKEY}`)
-            //  console.log(geoGet.data)
+             const geoGet = await axios(`${GEOBASEURL}${location}&key=${process.env.REACT_APP_GEO_KEY}`)
+            
              lat = geoGet.data.results[0].geometry.location.lat;
              lng = geoGet.data.results[0].geometry.location.lng;
              
              //Seatgeek API call
-             const seatGet = axios(`${SEATBASEURL}${location}&datetime_utc.gte=${startTime}&datetime_utc.lte=${endTime}&client_id=${SEATCLIENTID}`);
+             const seatGet = axios(`${SEATBASEURL}${location}&datetime_utc.gte=${startTime}&datetime_utc.lte=${endTime}&client_id=${process.env.REACT_APP_SEAT_KEY}`);
              //Google Museums API Call
-             const placesGet = axios(`${PLACESBASEURL}${lat},${lng}&radius=1500&type=museum&key=${PLACESAPIKEY}`);
+             const placesGet = axios(`${PLACESBASEURL}${lat},${lng}&radius=1500&type=museum&key=${process.env.REACT_APP_PLACES_KEY}`);
              //Google Parks API Call
-             const parksGet = axios(`${PLACESBASEURL}${lat},${lng}&radius=1500&type=park&key=${PLACESAPIKEY}`);
+             const parksGet = axios(`${PLACESBASEURL}${lat},${lng}&radius=1500&type=park&key=${process.env.REACT_APP_PLACES_KEY}`);
              //Yelp API Call
              const yelpGet = axios(`${YELPBASEURL}${location}`, {
                 headers: {
-                "Authorization": `Bearer ${YELPAPIKEY}`
+                "Authorization": `Bearer ${process.env.REACT_APP_YELP_KEY}`
                 }
              });
-             const weatherGet = axios(`${WEATHERBASEURL}/${WEATHERAPIKEY}/${lat},${lng}`)
+             const weatherGet = axios(`${WEATHERBASEURL}/${process.env.REACT_APP_WEATHER_KEY}/${lat},${lng}`)
              //Return Data
              const [seatData, placesData, yelpData, parksData, weatherData] = await Promise.all([seatGet, placesGet, yelpGet, parksGet, weatherGet])
             //  console.log("seat", seatData.data.events);

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import GoogleMapReact from 'google-map-react'
 import Markers from "../Markers"
-const AnyReactComponent = ({ text }) => <div>{ text }</div>;
+import PropTypes from "prop-types"
+// const AnyReactComponent = ({ text }) => <div>{ text }</div>;
 
 class Map extends Component {
   static defaultProps = {
@@ -23,6 +24,11 @@ render() {
       </div>
     )
   }
+}
+
+Map.propTypes = {
+  center: PropTypes.node,
+  zoom: PropTypes.node
 }
 
 

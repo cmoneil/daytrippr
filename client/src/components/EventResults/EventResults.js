@@ -1,5 +1,6 @@
 import React from "react";
 import Icon from "../Map/icons/events.png"
+import PropTypes from "prop-types"
 
 const EventResults = props => (
   
@@ -16,5 +17,9 @@ const EventResults = props => (
   </div>
 
 );
+
+EventResults.propTypes ={
+  children: PropTypes.node
+}
 
 export default EventResults

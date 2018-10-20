@@ -7,6 +7,7 @@ import Callback from './Callback/Callback';
 import Auth from './Auth/Auth';
 import history from './history';
 
+
 const auth = new Auth();
 
 const App = () => (

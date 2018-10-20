@@ -1,6 +1,7 @@
 import React from "react";
 import { Marker, InfoWindow } from "react-google-maps";
 import MapCard from "../MapCard"
+import PropTypes from "prop-types"
 // import StethoscopeIcon from "../stethoscopeIcon.png";
 
 export default class RestMarker extends React.Component {
@@ -10,7 +11,7 @@ export default class RestMarker extends React.Component {
     activeMarker: this.props.activeMarker
   }
 
-  toggleOpen= (e) => {
+  toggleOpen= () => {
     console.log(this.state.isOpen)
     this.setState({isOpen: !this.state.isOpen}, () =>{
       console.log(this.state.isOpen)
@@ -55,4 +56,13 @@ export default class RestMarker extends React.Component {
         </Marker>
     );
   }
+}
+
+RestMarker.propTypes = {
+  url: PropTypes.node,
+  name: PropTypes.node,
+  location: PropTypes.node,
+  icon: PropTypes.node,
+  position: PropTypes.node,
+  activeMarker: PropTypes.node
 }

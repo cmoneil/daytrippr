@@ -1,6 +1,6 @@
 import React from "react";
 import Icon from "../Map/icons/itin.png"
-
+import PropTypes from "prop-types"
 
 const Itinerary = props => (
   
@@ -17,5 +17,9 @@ const Itinerary = props => (
 
 
 );
+
+Itinerary.propTypes = {
+  children: PropTypes.node
+}
 
 export default Itinerary

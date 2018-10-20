@@ -1,5 +1,6 @@
 import React from "react";
 import Icon from "../Map/icons/park.png"
+import PropTypes from "prop-types"
 
 const ParksResults = props => (
   
@@ -17,5 +18,9 @@ const ParksResults = props => (
   
 
 );
+
+ParksResults.propTypes = {
+  children: PropTypes.node
+}
 
 export default ParksResults

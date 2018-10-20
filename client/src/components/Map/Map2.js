@@ -6,11 +6,11 @@ import EventIcon from "./icons/events.png";
 import RestIcon from "./icons/rest.png"
 import ParkIcon from "./icons/park.png"
 import ItinIcon from "./icons/itin.png"
-// import { join } from "path";
+
 
 const Map2 = withScriptjs(withGoogleMap((props) =>{
 
-  const placeMarkers = props.places.map( (places, idx) =>    <RestMarkers
+  const placeMarkers = props.places.map( (places) =>    <RestMarkers
       icon={PlaceIcon}
       key={places.id}
       id={places.id}
@@ -22,7 +22,7 @@ const Map2 = withScriptjs(withGoogleMap((props) =>{
       activeMarker={places.id === props.activeMarker ? true : false}
     />
   );
-  const parksMarkers = props.parks.map( (parks, idx) =>    <RestMarkers
+  const parksMarkers = props.parks.map( (parks) =>    <RestMarkers
       icon={ParkIcon}
       key={parks.id}
       id={parks.id}
@@ -35,7 +35,7 @@ const Map2 = withScriptjs(withGoogleMap((props) =>{
     />
   );
         
-  const eventMarkers = props.events.map( (events, idx) => 
+  const eventMarkers = props.events.map( (events) => 
     <RestMarkers
       icon={EventIcon}
       key={events.id}
@@ -48,7 +48,7 @@ const Map2 = withScriptjs(withGoogleMap((props) =>{
       activeMarker={events.id === props.activeMarker ? true : false}
   />
   );
-  const restMarkers = props.restaurants.map( (restaurants, idx) => 
+  const restMarkers = props.restaurants.map( (restaurants) => 
      <RestMarkers
       icon={RestIcon}
       key={restaurants.id}
@@ -61,7 +61,7 @@ const Map2 = withScriptjs(withGoogleMap((props) =>{
       activeMarker={restaurants.id === props.activeMarker ? true : false}
   />
   );
-  const itinMarkers = props.itin.map( (itin, idx) => 
+  const itinMarkers = props.itin.map( (itin) => 
     <RestMarkers
       icon={ItinIcon}
       key={itin._id}

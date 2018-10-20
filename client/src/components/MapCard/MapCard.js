@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types"
 
 const MapCard = (props) => (
     <div className="card">
@@ -9,5 +10,11 @@ const MapCard = (props) => (
     </div>
 
 );
+
+MapCard.propTypes = {
+name: PropTypes.node,
+url: PropTypes.node
+
+}
 
 export default MapCard
