@@ -2,6 +2,7 @@ import React from "react";
 import Icon from "../Map/icons/rest.png"
 import PropTypes from "prop-types"
 
+//Container for Restaurants list
 const RestResults = props => (
   
   <div className="col-lg-3 col-sm-12" style={{marginBottom: 5}}>

@@ -2,6 +2,7 @@ import React from "react";
 import Icon from "../Map/icons/park.png"
 import PropTypes from "prop-types"
 
+//Container for Park results list
 const ParksResults = props => (
   
   <div className="col-lg-3 col-sm-12" style={{marginBottom: 5}}>

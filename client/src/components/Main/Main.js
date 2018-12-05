@@ -45,12 +45,12 @@ class Main extends Component {
     componentWillMount() {
         this.setState({ oauthID: localStorage.getItem("oauthID") })
     }
-
+    //Gets Itinerary data 
     componentDidMount() {
         this.getSaved()
     
     }
-
+    //Gets User info
     getUser = () =>{
         API.findUser()
         .then((res) => {
@@ -58,29 +58,30 @@ class Main extends Component {
         })
         .catch(err => console.log(err))
     }
-
+    //Returns Zip Code from search
     handleLocation = (event) => {
         this.setState({ location: event.target.value })
     }
-    handleFormSubmit = (event) => {
-        event.preventDefault();
-    }
 
+    // Returns Time to spend from search
     handleTimeToSpend = (event) => {
         this.setState({ timeToSpend: event.target.value })
     }
-
+    //Returns Money to spend from search
     handleMoney = (event) => {
         this.setState({ money: event.target.value })
     }
+    //Handles form submit
     handleSubmit = (event) => {
         event.preventDefault();
+        //Gets exact time and date of submit
         let now = Moment().format("YYYY-MM-DDTHH:mm");
         let end = Moment().add(this.state.timeToSpend, "h").format("YYYY-MM-DDTHH:mm");
         this.setState({
             startTime: Moment().format("YYYY-MM-DDTHH:mm"),
             endTime: Moment().add(this.state.timeToSpend, "h").format("YYYY-MM-DDTHH:mm")
         });
+        //Sends form Data to search api
         axios.post("/api/search/form-data",{
             location: this.state.location,
             startTime: now,
@@ -89,7 +90,7 @@ class Main extends Component {
         })
         .then((response) => {
              response.data.collection[1].map(events=>{
-                events.name = events.title
+                return events.name = events.title
             })
             this.setState({
                 collection: response.data.collection,
@@ -102,10 +103,7 @@ class Main extends Component {
                 weather: response.data.collection[4]
             });
             response.data.collection[1].map(events=>{
-                events.name = events.title
-                // console.log(events.id)
-                // console.log(events.title)
-                // console.log(events.url)
+                return events.name = events.title
 
             })
             
@@ -117,7 +115,7 @@ class Main extends Component {
     
     }
 
-
+    //Handles save items to itinerary
     handleSaveButton = (object) => {
         API.saveItinerary({id: object.id,
             name: object.name,
@@ -130,7 +128,7 @@ class Main extends Component {
            
            
     }
-
+    //Gets saved itinerary items from MongoDB
     getSaved = () => {
         API.getItinerary(this.state.oauthID)
             .then((res) => {
@@ -140,9 +138,9 @@ class Main extends Component {
             
 
     }
-
+    
+    //Handles deleting items from itinerary
     handleDeleteButton = (id) => {
-        console.log("delete: ", id)
         API.deleteItinerary(id)
             .then(this.getSaved);
 

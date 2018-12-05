@@ -18,18 +18,6 @@ class AuthPage extends Component {
         }
         {
           !isAuthenticated() && (
-            //   <h4>
-            //     You are not logged in! Please{' '}
-            //     <a
-            //       style={{ cursor: 'pointer' }}
-            //       onClick={this.login.bind(this)}
-            //     >
-            //       Log In
-            //     </a>
-            //     {' '}to continue.
-            //   </h4>
-              
-            // )&&
             <div className="container-fluid" style={
               {backgroundImage: `url(${Background})`,
               backgroundSize: `cover`,
@@ -51,6 +39,6 @@ class AuthPage extends Component {
 }
 
 AuthPage.propTypes = {
-  auth: PropTypes.node
+  auth: PropTypes.object
 }
 export default AuthPage;

@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
+//Itinerary results list
 const ItinList = props => (
 <li className="" >
             <div style={{ margin: 5, paddingBottom: 3, borderBottom: "solid 1px #e0e0e0"}}>
@@ -17,7 +18,7 @@ const ItinList = props => (
 ItinList.propTypes = {
     title: PropTypes.node,
     url: PropTypes.node,
-    handleDeleteButton: PropTypes.node,
+    handleDeleteButton: PropTypes.func,
     _id: PropTypes.node
 }
 

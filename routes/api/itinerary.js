@@ -1,14 +1,17 @@
 const router = require("express").Router();
 const intineraryController = require("../../controllers/intineraryController");
 
-// Matches with "/api/itinerary"
+// Matches with "/api/itinerary:oauthID"
+// Retrieves itinerary based on User Id
 router.route("/:oauthID")
-  .get(intineraryController.findById)
+  .get(intineraryController.findById);
 
+//Creates itinerary
 router.route("/")
-  .post(intineraryController.create)
+  .post(intineraryController.create);
 
-// Matches with "/api/books/:id"
+// Matches with "/api/intinerary/:id"
+//Adds and deletes items from intinerary
 router
   .route("/:id")
   .get(intineraryController.findById)

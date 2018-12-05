@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
+//List results from different API's in their containers
 const ResultsList = props => (
   <li>
     <div style={{ margin: 5, paddingBottom: 3, borderBottom: "solid 1px #e0e0e0"}}>
@@ -17,7 +18,7 @@ const ResultsList = props => (
 ResultsList.propTypes = {
   title: PropTypes.node,
   url: PropTypes.node,
-  handleSaveButton: PropTypes.node,
+  handleSaveButton: PropTypes.func,
   _id: PropTypes.node
 }
 

@@ -4,6 +4,7 @@ import PropTypes from "prop-types"
 
 const Weather = props => (
   <div>
+    {/* Mobile friendly weather results */}
     <MediaQuery query="(max-device-width: 768px)">
     <div className="container-fluid" style={{backgroundColor: `rgba(255,255,255,0.5)`, paddingBottom: 2, marginBottom: 15, height: 35, paddingTop: 2}}>
     <div className="row">
@@ -19,6 +20,7 @@ const Weather = props => (
     </div>
   </div>
   </MediaQuery>
+  {/* Non mobile weather results */}
   <MediaQuery query="(min-device-width: 769px)">
     <div className="container-fluid" style={{backgroundColor: `rgba(255,255,255,0.5)`, paddingBottom: 2, marginBottom: 15, height: 25, paddingTop: 2}}>
     <div className="row">

@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const axios = require("axios")
 
-// Matches with "/api/yelp-search"
+// Matches with "/api/search"
 
 let location;
 let startTime;
@@ -10,10 +10,15 @@ let lat;
 let lng;
 // let money = 0; Not using at this time
 let collection = [];
-const GEOBASEURL = "https://maps.googleapis.com/maps/api/geocode/json?address="
+//Geolocate API url
+const GEOBASEURL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
+//Yelp API url
 const YELPBASEURL = "https://api.yelp.com/v3/businesses/search?location=";
-const PLACESBASEURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="
+//Google Places API url
+const PLACESBASEURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=";
+//SeatGeek API url
 const SEATBASEURL = "https://api.seatgeek.com/2/events?geoip=";
+//DarkSky API url
 const WEATHERBASEURL ="https://api.darksky.net/forecast";
 
 
@@ -27,6 +32,7 @@ router.route("/form-data")
 
      const apiRequests = async ()=>{
          try{
+             //Geolocate API call
              const geoGet = await axios(`${GEOBASEURL}${location}&key=${process.env.REACT_APP_GEO_KEY}`)
             
              lat = geoGet.data.results[0].geometry.location.lat;
@@ -44,14 +50,11 @@ router.route("/form-data")
                 "Authorization": `Bearer ${process.env.REACT_APP_YELP_KEY}`
                 }
              });
+             //Darksky API Call
              const weatherGet = axios(`${WEATHERBASEURL}/${process.env.REACT_APP_WEATHER_KEY}/${lat},${lng}`)
              //Return Data
              const [seatData, placesData, yelpData, parksData, weatherData] = await Promise.all([seatGet, placesGet, yelpGet, parksGet, weatherGet])
-            //  console.log("seat", seatData.data.events);
-            // //  console.log("places", placesData.data.results);
-            // //  console.log("yelp", yelpData.data.businesses);
-            // console.log(parksData.data.results)
-            // console.log(weatherData.data.currently)
+             //Pushes data into collection array
              collection.push(yelpData.data.businesses, seatData.data.events, placesData.data.results, parksData.data.results, weatherData.data.currently)
              res.send({collection, lat, lng})
              

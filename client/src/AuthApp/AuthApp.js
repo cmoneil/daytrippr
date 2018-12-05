@@ -64,8 +64,8 @@ class AuthApp extends Component {
 }
 
 AuthApp.propTypes = {
-  history: PropTypes.node,
-  auth: PropTypes.node,
+  history: PropTypes.object,
+  auth: PropTypes.object
   
 }
 

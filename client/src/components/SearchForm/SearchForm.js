@@ -54,10 +54,10 @@ const SearchForm = props => (
 );
 
 SearchForm.propTypes = {
-  handleLocation: PropTypes.node,
-  handleMoney: PropTypes.node,
-  handleSubmit: PropTypes.node,
-  handleTimeToSpend: PropTypes.node,
+  handleLocation: PropTypes.func,
+  handleMoney: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  handleTimeToSpend: PropTypes.func,
   location: PropTypes.node,
   money: PropTypes.node,
   timeToSpend: PropTypes.node

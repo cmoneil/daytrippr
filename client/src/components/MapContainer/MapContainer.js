@@ -1,12 +1,12 @@
 import React from "react";
-import Map2 from "../Map";
+import Map from "../Map";
 import PropTypes from "prop-types"
 
 export default class MapContainer extends React.Component {
 
 	render() {
 		return (
-			<Map2
+			<Map
                 center={this.props.center}
                 restaurants={this.props.restaurants}
                 events={this.props.events}
@@ -23,10 +23,10 @@ export default class MapContainer extends React.Component {
 }
 
 MapContainer.propTypes = {
-	center: PropTypes.node,
-	restaurants: PropTypes.node,
-	events: PropTypes.node,
-	places: PropTypes.node,
-	parks: PropTypes.node,
-	itin: PropTypes.node
+	center: PropTypes.object,
+	restaurants: PropTypes.array,
+	events: PropTypes.array,
+	places: PropTypes.array,
+	parks: PropTypes.array,
+	itin: PropTypes.array
 }

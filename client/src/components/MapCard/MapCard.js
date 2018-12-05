@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types"
 
+//Cards for each marker when clicked
 const MapCard = (props) => (
     <div className="card">
         <div className="card-header">{props.name}</div>

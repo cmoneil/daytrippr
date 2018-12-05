@@ -2,6 +2,7 @@ import React from "react";
 import Icon from "../Map/icons/events.png"
 import PropTypes from "prop-types"
 
+//Results card wrapper for Events list
 const EventResults = props => (
   
   <div className="col-lg-3 col-sm-12" style={{marginBottom: 5}}>

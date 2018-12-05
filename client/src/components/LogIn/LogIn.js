@@ -1,6 +1,6 @@
 import React from "react";
 
-
+//Login page
 const LogIn = () => (
   <div className="container-fluid">
     <div className="row" style={{paddingTop:30}}>
