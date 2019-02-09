@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const axios = require("axios")
-const open = require("open")
+const opn= require("opn")
 
 // Matches with "/api/search"
 
@@ -83,11 +83,11 @@ router.route("/url-data")
                 placeUrl = response.data.result.website;
                 placeName = response.data.result.name;
                 if (placeUrl === undefined) {
-                    open(`https://www.google.com/search?q=${placeName}+${userLocation}`)
+                    opn(`https://www.google.com/search?q=${placeName}+${userLocation}`)
                     
                 }
                 else {
-                    open(placeUrl)
+                    opn(placeUrl)
                 }
                 res.sendStatus(200)
             })

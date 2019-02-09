@@ -75,7 +75,6 @@ class Main extends Component {
     //Handles form submit
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state.location)
         //Gets exact time and date of submit
         let now = Moment().format("YYYY-MM-DDTHH:mm");
         let end = Moment().add(this.state.timeToSpend, "h").format("YYYY-MM-DDTHH:mm");
