@@ -89,7 +89,8 @@ router.route("/url-data")
                 else {
                     opn(placeUrl)
                 }
-                res.sendStatus(200)
+                // res.sendStatus(200)
+                res.send(response.data.result)
             })
             .catch(err => {
                 console.log(err)

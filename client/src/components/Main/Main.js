@@ -136,6 +136,9 @@ class Main extends Component {
             id: object.id,
             location: this.state.location
         })
+        .then((response) => {
+            console.log(response)
+        })
             .catch(error => {
                 console.log(error)
             })
