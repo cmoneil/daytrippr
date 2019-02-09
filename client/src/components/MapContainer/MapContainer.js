@@ -7,9 +7,10 @@ export default class MapContainer extends React.Component {
 	render() {
 		return (
 			<Map
-                center={this.props.center}
-                restaurants={this.props.restaurants}
-                events={this.props.events}
+				userLocation={this.props.userLocation}
+				center={this.props.center}
+				restaurants={this.props.restaurants}
+				events={this.props.events}
 				places={this.props.places}
 				parks={this.props.parks}
 				itin={this.props.itin}
@@ -26,7 +27,9 @@ MapContainer.propTypes = {
 	center: PropTypes.object,
 	restaurants: PropTypes.array,
 	events: PropTypes.array,
+	location: PropTypes.node,
 	places: PropTypes.array,
 	parks: PropTypes.array,
-	itin: PropTypes.array
+	itin: PropTypes.array,
+	userLocation: PropTypes.node
 }

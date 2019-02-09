@@ -30,6 +30,7 @@ export default class MapMarkers extends React.Component {
 
   render() {
     return (
+      
       <Marker
         onClick={() => this.toggleOpen(this.props.name)}
         position={this.props.location}
@@ -37,7 +38,10 @@ export default class MapMarkers extends React.Component {
       >
         {this.state.isOpen && this.state.activeMarker ?
           <InfoWindow maxWidth={800} defaultPosition={this.props.location} onCloseClick={this.toggleOpen}>
-            <MapCard name={this.props.name}
+            <MapCard
+              userLocation={this.props.userLocation}
+              placeId={this.props.placeId}
+              name={this.props.name}
               url={this.props.url}
             />
           </InfoWindow> : null
@@ -48,11 +52,13 @@ export default class MapMarkers extends React.Component {
 }
 
 MapMarkers.propTypes = {
+  id: PropTypes.node,
   url: PropTypes.node,
   name: PropTypes.node,
   icon: PropTypes.node,
   activeMarker: PropTypes.bool,
   position: PropTypes.node,
-  location: PropTypes.object
-  
+  location: PropTypes.object,
+  userLocation: PropTypes.node,
+  placeId: PropTypes.node
 }
