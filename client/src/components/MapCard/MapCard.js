@@ -8,6 +8,12 @@ const handleUrlMap = (props) => {
         id: props.placeId,
         location: props.userLocation
     })
+    .then((response) => {
+        let placeName = response.data.name
+        let placeLocation = props.userLocation
+        response.data.website ? window.open(response.data.website):
+        window.open(`https://www.google.com/search?q=${placeName}+${placeLocation}`)
+    })
     .catch(error => {
         console.log(error)
     })

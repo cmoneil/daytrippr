@@ -137,7 +137,9 @@ class Main extends Component {
             location: this.state.location
         })
         .then((response) => {
-            console.log(response)
+            let placeName = response.data.name
+            response.data.website ? window.open(response.data.website):
+            window.open(`https://www.google.com/search?q=${placeName}+${this.state.location}`)
         })
             .catch(error => {
                 console.log(error)

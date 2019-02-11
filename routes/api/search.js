@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const axios = require("axios")
-const opn= require("opn")
+const opn = require("opn")
 
 // Matches with "/api/search"
 
@@ -80,16 +80,6 @@ router.route("/url-data")
         userLocation = req.body.location
         axios.get(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${placesID}&&key=${process.env.REACT_APP_PLACES_KEY}`)
             .then(response => {
-                placeUrl = response.data.result.website;
-                placeName = response.data.result.name;
-                if (placeUrl === undefined) {
-                    opn(`https://www.google.com/search?q=${placeName}+${userLocation}`)
-                    
-                }
-                else {
-                    opn(placeUrl)
-                }
-                // res.sendStatus(200)
                 res.send(response.data.result)
             })
             .catch(err => {

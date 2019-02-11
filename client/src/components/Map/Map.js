@@ -9,7 +9,6 @@ import ItinIcon from "./icons/itin.png"
 
 
 const Map = withScriptjs(withGoogleMap((props) => {
-  // console.log(props.userLocation)
   const placeMarkers = props.places.map((places) => <MapMarkers
     icon={PlaceIcon}
     key={places.id}
