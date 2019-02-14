@@ -5,6 +5,7 @@ import EventRestResultsList from "../EventRestResultsList"
 import Footer from "../Footer"
 import SearchForm from "../SearchForm";
 import EventResults from "../EventResults";
+import LoadingSpinner from "../LoadingSpinner";
 import PlacesResults from "../PlacesResults";
 import ParksResults from "../ParksResults";
 import RestResults from "../RestResults";
@@ -31,6 +32,7 @@ class Main extends Component {
             timeToSpend: "",
             startTime: "",
             endTime: "",
+            loading: false,
             money: "",
             oauthID: "",
             collection: [],
@@ -75,6 +77,7 @@ class Main extends Component {
     //Handles form submit
     handleSubmit = (event) => {
         event.preventDefault();
+        this.setState({loading: true})
         //Gets exact time and date of submit
         let now = Moment().format("YYYY-MM-DDTHH:mm");
         let end = Moment().add(this.state.timeToSpend, "h").format("YYYY-MM-DDTHH:mm");
@@ -94,6 +97,7 @@ class Main extends Component {
                     return events.name = events.title
                 });
                 this.setState({
+                    loading: false,
                     collection: response.data.collection,
                     lat: response.data.lat,
                     lng: response.data.lng,
@@ -122,6 +126,7 @@ class Main extends Component {
             name: object.name,
             url: object.url,
             oauthID: this.state.oauthID,
+            placeID: object.placeID,
             lat: object.lat,
             lng: object.lng
         })
@@ -167,13 +172,13 @@ class Main extends Component {
 
 
     render() {
-
+        const {loading} =this.state
         return (
-            <div >
+            <div>
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-lg-8 col-sm-12">
-                            <MapContainer
+                            {loading ? <LoadingSpinner /> : <MapContainer
                                 handleUrl={this.handleUrl}
                                 userLocation={this.state.location}
                                 restaurants={this.state.restaurants}
@@ -181,7 +186,7 @@ class Main extends Component {
                                 parks={this.state.parks}
                                 events={this.state.events}
                                 itin={this.state.saved}
-                                center={{ lat: this.state.lat, lng: this.state.lng }} />
+                                center={{ lat: this.state.lat, lng: this.state.lng }} />}
                         </div>
                         <div className="col-lg-4 col-sm-12">
                             <SearchForm
@@ -203,6 +208,9 @@ class Main extends Component {
                                             key={saved._id}
                                             title={saved.name}
                                             url={saved.url}
+                                            placeID={saved.placeID}
+                                            handleUrl={() =>
+                                                this.handleUrl({ id: saved.placeID })}
                                             handleDeleteButton={this.handleDeleteButton}
                                         />
                                     )
@@ -242,7 +250,12 @@ class Main extends Component {
                                             title={places.name}
                                             handleUrl={() =>
                                                 this.handleUrl({ id: places.place_id })}
-                                            handleSaveButton={() => this.handleSaveButton({ id: places.id, name: places.name, url: places.url, lat: places.geometry.location.lat, lng: places.geometry.location.lng })}
+                                            handleSaveButton={() => this.handleSaveButton({ 
+                                                id: places.id, 
+                                                placeID: places.place_id,
+                                                name: places.name, 
+                                                url: places.url, 
+                                                lat: places.geometry.location.lat, lng: places.geometry.location.lng })}
                                             getSaved={this.getSaved}
                                         />
                                     )

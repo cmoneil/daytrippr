@@ -22,6 +22,7 @@ module.exports = {
         name: req.body.name,
         url: req.body.url,
         oauthID: req.body.oauthID,
+        placeID: req.body.placeID,
         lat: req.body.lat,
         lng: req.body.lng
       }
